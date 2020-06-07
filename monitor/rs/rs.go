@@ -13,7 +13,8 @@ const (
 )
 
 type Redis_data_struct struct {
-	ID           int    `json:"id" db:"Id"`
+	ID           int    `json:"rsid" db:"Id"`
+	Type		 string `json:"type" `
 	IP           string `json:"ip" db:"IP"`
 	PORT         string `json:"port" db:"PORT"`
 	REDISNAME    string `json:"redisname" db:"REDISNAME"`

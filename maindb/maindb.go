@@ -68,7 +68,9 @@ func Get_All_DB_List() {
 	}
 	defer results.Close()
 	for results.Next() {
-		newDb:=&mydb.DBInfo{}
+		newDb:=&mydb.DBInfo{
+			Type: "db",
+		}
 		results.Scan(
 			&newDb.ID,
 			&newDb.GROUP,
@@ -108,7 +110,9 @@ func Get_All_Web_List() {
 	}
 	defer web_results.Close()
 	for web_results.Next() {
-		newWeb := &web.Web_data_struct{}
+		newWeb := &web.Web_data_struct{
+			Type: "web",
+		}
 		web_results.Scan(
 			&newWeb.ID,
 			&newWeb.DOMAIN,
@@ -128,7 +132,9 @@ func Get_All_Redis_List() {
 	}
 	defer redis_results.Close()
 	for redis_results.Next() {
-		newRedis := &rs.Redis_data_struct{}
+		newRedis := &rs.Redis_data_struct{
+			Type: "rs",
+		}
 		redis_results.Scan(
 			&newRedis.ID,
 			&newRedis.IP,

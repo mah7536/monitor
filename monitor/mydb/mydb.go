@@ -16,7 +16,8 @@ const (
 
 
 type DBInfo struct {
-	ID      int    `json:"id" db:"Id"`
+	ID      int    `json:"dbid" db:"Id"`
+	Type    string `json:"type"`
 	GROUP   string `json:"group" db:"Group"`
 	NAME    string `json:"name" db:"Name"`
 	IP      string `json:"ip" db:"Ip"`
@@ -27,7 +28,7 @@ type DBInfo struct {
 	STATUS  bool   `json:"status"`
 	MESSAGE string `json:"message"`
 	NOTIFY  bool   `json:"notify"`
-	DB      *sql.DB
+	DB      *sql.DB `json:"-"`
 }
 
 type Websocket_data map[int]*DBInfo
@@ -58,7 +59,9 @@ func Get_db_inf(send_db chan bool) {
 		select {
 		case <-Fresh_tb:
 			for k, _ := range DBList {
-				DBList[k].DB.Close()
+				if DBList[k].DB != nil {
+					DBList[k].DB.Close()
+				}
 				delete(DBList, k)
 			}
 		case <-ticker.C:

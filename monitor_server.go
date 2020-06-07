@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"monitor/api"
 	"monitor/maindb"
 	mydb "monitor/monitor/mydb"
@@ -131,6 +132,12 @@ func main() {
 		case <-send_db:
 			data,_:=json.Marshal(mydb.DBList)
 			ws.Send_ws_data(data)
+		default:
+			time.Sleep(1*time.Second)
+			if len(ws.LoginList) != 0 {
+				fmt.Println(ws.LoginList)
+				fmt.Println(len(ws.Get_manager().Clients))
+			}
 		}
 	}
 }

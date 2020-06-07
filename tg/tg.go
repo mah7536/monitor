@@ -10,7 +10,7 @@ import (
 const (
 	APIEndpoint  = "https://api.telegram.org/bot%s/%s"
 	FileEndpoint = "https://api.telegram.org/file/bot%s/%s"
-	Notify_Group = 
+	Notify_Group = 327835980
 	WEB_Delay    = 10
 )
 
@@ -23,7 +23,7 @@ var (
 
 
 func init() {
-	bot, err := tgbotapi.NewBotAPI("")
+	bot, err := tgbotapi.NewBotAPI("841452677:AAFTaj5bkrKMcE04m3SZe06fiGnn9vJe6n0")
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(2)

@@ -13,7 +13,8 @@ const (
 )
 
 type Web_data_struct struct {
-	ID           int    `json:"id" db:"Id"`
+	ID           int    `json:"webid" db:"Id"`
+	Type    	 string `json:"type" `
 	DOMAIN       string `json:"domain" db:"Domain"`
 	WEBNAME      string `json:"webname" db:"Webname"`
 	STATUS       int    `json:"status"`
